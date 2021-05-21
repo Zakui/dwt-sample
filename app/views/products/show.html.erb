@@ -1,0 +1,60 @@
+<script type="text/javascript" src="Resources/dynamsoft.webtwain.initiate.js"></script>
+<script type="text/javascript" src="Resources/dynamsoft.webtwain.config.js"></script>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Stock:</strong>
+  <%= @product.stock %>
+</p>
+
+
+<div id="dwtcontrolContainer" ></div>
+<input type="button" value="Scan" onclick="AcquireImage();" />
+
+<hr />
+<div>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Back', products_path %>
+</div>
+
+<script type="text/javascript">
+  var containerName = 'dwtcontrolContainer';
+  Dynamsoft.WebTwainEnv.UseLocalService = false;
+  Dynamsoft.WebTwainEnv.AutoLoad = true;
+  Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: containerName, Width: viewerWidth, Height: viewerHeight }];
+  Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', function () {
+      dwtObj = Dynamsoft.WebTwainEnv.GetWebTwain(containerName);
+      if (dwtObj) {
+          dwtObj.Width = viewerWidth;
+          dwtObj.Height = viewerHeight;
+          dwtObj.MouseShape = true;
+      }
+  });
+
+  function AcquireImage() {
+    var DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
+    if (DWObject) {		
+      DWObject.SelectSource(function () {		
+          var OnAcquireImageSuccess = OnAcquireImageFailure = function () {
+              DWObject.CloseSource();
+          };
+          DWObject.OpenSource();
+          DWObject.IfDisableSourceAfterAcquire = true;
+          DWObject.AcquireImage(OnAcquireImageSuccess, OnAcquireImageFailure);
+        }, function () {
+          console.log('SelectSource failed!');
+        });
+    }
+  }
+</script>
