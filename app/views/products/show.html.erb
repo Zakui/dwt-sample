@@ -30,11 +30,11 @@
 
 <script type="text/javascript">
   var containerName = 'dwtcontrolContainer';
-  Dynamsoft.WebTwainEnv.UseLocalService = false;
-  Dynamsoft.WebTwainEnv.AutoLoad = true;
-  Dynamsoft.WebTwainEnv.Containers = [{ ContainerId: containerName, Width: viewerWidth, Height: viewerHeight }];
-  Dynamsoft.WebTwainEnv.RegisterEvent('OnWebTwainReady', function () {
-      dwtObj = Dynamsoft.WebTwainEnv.GetWebTwain(containerName);
+  Dynamsoft.DWT.UseLocalService = false;
+  Dynamsoft.DWT.AutoLoad = true;
+  Dynamsoft.DWT.Containers = [{ ContainerId: containerName, Width: viewerWidth, Height: viewerHeight }];
+  Dynamsoft.DWT.RegisterEvent('OnWebTwainReady', function () {
+      dwtObj = Dynamsoft.DWT.GetWebTwain(containerName);
       if (dwtObj) {
           dwtObj.Width = viewerWidth;
           dwtObj.Height = viewerHeight;
@@ -43,7 +43,7 @@
   });
 
   function AcquireImage() {
-    var DWObject = Dynamsoft.WebTwainEnv.GetWebTwain('dwtcontrolContainer');
+    var DWObject = Dynamsoft.DWT.GetWebTwain('dwtcontrolContainer');
     if (DWObject) {		
       DWObject.SelectSource(function () {		
           var OnAcquireImageSuccess = OnAcquireImageFailure = function () {

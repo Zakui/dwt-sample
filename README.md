@@ -24,7 +24,10 @@ Migrate database
         
 `make db-migrate`
 
-5. Run the app
+5.Load sample data
+        
+`make db-seed`
+6. Run the app
 Before make sure the port `3000` is free on your computer
 `docker-compose up`
 
