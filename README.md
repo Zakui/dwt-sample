@@ -8,7 +8,7 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
-`docker` and `docker-compose`
+`docker` , `docker-compose` and `Dynamic Web TWAIN V17.0`
 * Configuration
 1. Clone repos
         
