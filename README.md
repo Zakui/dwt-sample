@@ -8,7 +8,7 @@ Things you may want to cover:
 * Ruby version
 
 * System dependencies
-`docker` , `docker-compose` and `Dynamic Web TWAIN V17.0`
+`docker >= V20.10.6` , and `Dynamic Web TWAIN V17.0`
 * Configuration
 1. Clone repos
         
@@ -16,7 +16,7 @@ Things you may want to cover:
 
 2. Build project
 
-`docker-compose build`
+`docker compose build`
 
 3. Create database
 
@@ -34,7 +34,7 @@ Migrate database
 6. Run the app
 Before make sure the port `3000` is free on your computer
 
-`docker-compose up`
+`docker compose up`
 
 then go to [http://localhost:3000](http://localhost:3000/) on a web browser to see the application Welcome.
 
